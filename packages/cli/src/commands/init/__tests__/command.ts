@@ -1,6 +1,6 @@
 import fs from "fs-extra";
 import path from "path";
-import { defaultWrittenConfig } from "../../../modules/config";
+import { defaultWrittenConfig } from "../../../config";
 import { silenceLogsInBlock, testdir } from "@changesets/test-utils";
 
 import initializeCommand from "..";

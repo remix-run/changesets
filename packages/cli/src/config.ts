@@ -11,8 +11,8 @@ import type {
   Linked,
   PackageGroup,
 } from "@changesets/types";
-import packageJson from "../../package.json";
-import { getDependentsGraph } from "../get-dependents-graph";
+import packageJson from "../package.json";
+import { getDependentsGraph } from "./get-dependents-graph";
 
 export let defaultWrittenConfig = {
   $schema: `https://unpkg.com/${packageJson.name}/@${packageJson.version}/schema.json`,

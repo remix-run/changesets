@@ -13,7 +13,7 @@ import type {
 import { incrementVersion } from "./increment-version";
 import { InternalError } from "@changesets/errors";
 import type { Packages, Package } from "@manypkg/get-packages";
-import { getDependentsGraph } from "../get-dependents-graph";
+import { getDependentsGraph } from "./get-dependents-graph";
 import type { InternalRelease, PreInfo } from "./types";
 
 function getPreVersion(version: string) {

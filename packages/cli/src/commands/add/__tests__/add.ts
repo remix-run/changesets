@@ -1,7 +1,7 @@
 import path from "path";
 import stripAnsi from "strip-ansi";
 import * as git from "@changesets/git";
-import { defaultConfig } from "../../../modules/config";
+import { defaultConfig } from "../../../config";
 import { silenceLogsInBlock, testdir } from "@changesets/test-utils";
 import writeChangeset from "@changesets/write";
 

@@ -4,7 +4,7 @@ import path from "path";
 import { getPackages } from "@manypkg/get-packages";
 import { getDependentsGraph } from "./get-dependents-graph";
 import { error } from "@changesets/logger";
-import { read } from "./modules/config";
+import { read } from "./config";
 import { ExitError } from "@changesets/errors";
 
 import init from "./commands/init";

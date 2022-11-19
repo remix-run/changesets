@@ -2,7 +2,7 @@ import path from "path";
 import fs from "fs-extra";
 import chalk from "chalk";
 
-import { defaultWrittenConfig } from "../../modules/config";
+import { defaultWrittenConfig } from "../../config";
 import { info, log, warn, error } from "@changesets/logger";
 
 const pkgPath = path.dirname(require.resolve("@changesets/cli/package.json"));

@@ -1,6 +1,6 @@
 import publishPackages from "../publishPackages";
 import * as git from "@changesets/git";
-import { defaultConfig } from "../../../modules/config";
+import { defaultConfig } from "../../../config";
 import { silenceLogsInBlock, testdir } from "@changesets/test-utils";
 import runRelease from "..";
 
