@@ -41,10 +41,10 @@ module.exports = {
 
 These functions are run during the `changeset version` and are expected to return a string (or a promise with a string).
 
-If you are using typescript to write your changelog functions, you can use the type. First install `@changesets/types`, and then:
+If you are using typescript to write your changelog functions, you can use the type.
 
 ```ts
-import { ChangelogFunctions } from "@changesets/types";
+import type { ChangelogFunctions } from "@remix-run/changesets";
 
 async function getReleaseLine() {}
 

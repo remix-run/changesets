@@ -1,7 +1,7 @@
 import fs from "fs-extra";
 import path from "path";
 import parse from "@changesets/parse";
-import type { NewChangeset } from "@changesets/types";
+import type { NewChangeset } from "./types";
 import * as git from "./git";
 
 async function filterChangesetsSinceRef(

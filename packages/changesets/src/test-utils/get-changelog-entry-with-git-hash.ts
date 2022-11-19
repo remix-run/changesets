@@ -1,9 +1,11 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import startCase from "lodash.startcase";
 import { getCommitThatAddsFile } from "../git";
-import type { ComprehensiveRelease, NewChangeset } from "@changesets/types";
-
-import type { RelevantChangesets } from "../types";
+import type {
+  RelevantChangesets,
+  ComprehensiveRelease,
+  NewChangeset,
+} from "../types";
 
 async function getReleaseLine(changeset: NewChangeset, cwd: string) {
   const [firstLine, ...futureLines] = changeset.summary

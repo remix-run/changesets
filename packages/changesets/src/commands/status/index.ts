@@ -11,7 +11,7 @@ import type {
   Release,
   ComprehensiveRelease,
   Config,
-} from "@changesets/types";
+} from "../../types";
 
 export default async function getStatus(
   cwd: string,

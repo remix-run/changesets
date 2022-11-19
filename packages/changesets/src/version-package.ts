@@ -1,8 +1,4 @@
-import type {
-  ComprehensiveRelease,
-  PackageJSON,
-  VersionType,
-} from "@changesets/types";
+import type { ComprehensiveRelease, PackageJSON, VersionType } from "./types";
 import { getVersionRangeType } from "./get-version-range-type";
 import semver from "semver";
 import { shouldUpdateDependencyBasedOnConfig } from "./utils";

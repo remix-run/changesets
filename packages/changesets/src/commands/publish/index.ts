@@ -4,7 +4,7 @@ import { ExitError } from "../../errors";
 import { error, log, success, warn } from "@changesets/logger";
 import * as git from "../../git";
 import { readPreState } from "../../pre";
-import type { Config, PreState } from "@changesets/types";
+import type { Config, PreState } from "../../types";
 import { getPackages } from "@manypkg/get-packages";
 import chalk from "chalk";
 import { getUntaggedPrivatePackages } from "./getUntaggedPrivatePackages";

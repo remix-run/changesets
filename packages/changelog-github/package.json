@@ -7,14 +7,17 @@
   "license": "MIT",
   "repository": "https://github.com/changesets/changesets/tree/main/packages/changelog-github",
   "dependencies": {
-    "@changesets/types": "^5.2.0",
     "dataloader": "^1.4.0",
     "dotenv": "^8.1.0",
     "node-fetch": "^2.5.0"
   },
   "devDependencies": {
     "@changesets/parse": "^0.3.15",
+    "@remix-run/changesets": "^0.1.0",
     "nock": "^11.7.0",
     "prettier": "^2.7.1"
+  },
+  "peerDependencies": {
+    "@remix-run/changesets": ">=0.1.0"
   }
 }

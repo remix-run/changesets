@@ -24,7 +24,7 @@
   },
   "workspaces": [
     "packages/*",
-    "scripts/*"
+    "internal/*"
   ],
   "author": "Changesets Contributors",
   "contributors": [
@@ -68,7 +68,7 @@
   "preconstruct": {
     "packages": [
       "packages/*",
-      "scripts/*"
+      "internal/*"
     ]
   },
   "prettier": {}

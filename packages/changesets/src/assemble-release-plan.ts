@@ -2,19 +2,20 @@ import * as semver from "semver";
 import type {
   Config,
   DependencyType,
+  InternalRelease,
   Linked,
   NewChangeset,
   PackageGroup,
   PackageJSON,
+  PreInfo,
   PreState,
   ReleasePlan,
   VersionType,
-} from "@changesets/types";
+} from "./types";
 import { incrementVersion } from "./increment-version";
 import { InternalError } from "./errors";
 import type { Packages, Package } from "@manypkg/get-packages";
 import { getDependentsGraph } from "./get-dependents-graph";
-import type { InternalRelease, PreInfo } from "./types";
 
 function getPreVersion(version: string) {
   let parsed = semver.parse(version)!;

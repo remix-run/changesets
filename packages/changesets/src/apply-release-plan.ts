@@ -4,7 +4,7 @@ import type {
   ChangelogFunctions,
   NewChangeset,
   ModCompWithPackage,
-} from "@changesets/types";
+} from "./types";
 
 import { defaultConfig } from "./config";
 import * as git from "./git";

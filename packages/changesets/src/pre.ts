@@ -1,6 +1,6 @@
 import * as fs from "fs-extra";
 import path from "path";
-import type { PreState } from "@changesets/types";
+import type { PreState } from "./types";
 import { getPackages } from "@manypkg/get-packages";
 import {
   PreExitButNotInPreModeError,

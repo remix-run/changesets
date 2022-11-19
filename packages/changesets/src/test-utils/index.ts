@@ -1,4 +1,4 @@
-import type { NewChangeset, Release, VersionType } from "@changesets/types";
+import type { NewChangeset, Release, VersionType } from "@remix-run/changesets";
 import type { Package, Packages } from "@manypkg/get-packages";
 
 function getPackage({

@@ -2,6 +2,6 @@
   "main": "dist/changesets.cjs.js",
   "module": "dist/changesets.esm.js",
   "preconstruct": {
-    "source": "../src/changelog"
+    "source": "../src/types"
   }
 }

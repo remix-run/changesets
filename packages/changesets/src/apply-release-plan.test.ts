@@ -3,7 +3,7 @@ import type {
   Config,
   NewChangeset,
   ComprehensiveRelease,
-} from "@changesets/types";
+} from "./types";
 import * as git from "./git";
 import fs from "fs-extra";
 import path from "path";

@@ -1,4 +1,4 @@
-import type { Config } from "@changesets/types";
+import type { Config, CliOptions } from "./types";
 import fs from "fs-extra";
 import path from "path";
 import { getPackages } from "@manypkg/get-packages";
@@ -14,7 +14,6 @@ import publish from "./commands/publish";
 import status from "./commands/status";
 import pre from "./commands/pre";
 import tagCommand from "./commands/tag";
-import type { CliOptions } from "./types";
 
 export async function run(
   input: string[],

@@ -1,7 +1,7 @@
 import { assembleReleasePlan } from "./assemble-release-plan";
 import { getChangesets } from "./get-changesets";
 import { read } from "./config";
-import type { Config, ReleasePlan } from "@changesets/types";
+import type { Config, ReleasePlan } from "./types";
 import { getPackages } from "@manypkg/get-packages";
 import { readPreState } from "./pre";
 

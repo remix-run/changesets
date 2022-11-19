@@ -1,4 +1,4 @@
-import { ChangelogFunctions } from "@changesets/types";
+import type { ChangelogFunctions } from "@remix-run/changesets/types";
 import { config } from "dotenv";
 import { getInfo, getInfoFromPullRequest } from "./get-github-info";
 

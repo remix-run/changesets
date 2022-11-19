@@ -10,7 +10,7 @@ import type {
   Fixed,
   Linked,
   PackageGroup,
-} from "@changesets/types";
+} from "./types";
 import packageJson from "../package.json";
 import { getDependentsGraph } from "./get-dependents-graph";
 

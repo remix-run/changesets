@@ -2,7 +2,7 @@ import chalk from "chalk";
 import path from "path";
 import * as git from "../../git";
 import { log, warn, error } from "@changesets/logger";
-import type { Config } from "@changesets/types";
+import type { Config } from "../../types";
 import { applyReleasePlan } from "../../apply-release-plan";
 import { getChangesets } from "../../get-changesets";
 import { assembleReleasePlan } from "../../assemble-release-plan";

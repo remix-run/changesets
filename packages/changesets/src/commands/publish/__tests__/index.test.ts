@@ -1,7 +1,7 @@
 import publishCommand from "../index";
 import { defaultConfig } from "../../../config";
 import * as path from "path";
-import type { Config } from "@changesets/types";
+import type { Config } from "../../../types";
 import { silenceLogsInBlock, testdir } from "@changesets/test-utils";
 
 let changelogPath = path.resolve(__dirname, "../../changelog");
