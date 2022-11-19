@@ -23,70 +23,67 @@ const changes: ChangeData[] = [
   },
 ];
 
-jest.mock(
-  "@changesets/get-github-info",
-  (): typeof import("@changesets/get-github-info") => {
-    // this is duplicated because jest.mock reordering things
-    let repo = "remix-run/remix-react";
-    let changes = [
-      {
-        commit: "a085003",
-        user: "Andarist",
-        pull: 1613,
-        repo,
-      },
-      {
-        commit: "b085003",
-        user: "chaance",
-        pull: null,
-        repo,
-      },
-      {
-        commit: "c085003",
-        user: "chaance",
-        pull: 1618,
-        repo,
-      },
-    ];
-    return {
-      async getInfo({ commit, repo }) {
-        // let { changes } = getFakeChangeData();
-        let data = changes.find((c) => c.commit === commit)!;
-        expect(data).toBeDefined();
-        expect(commit).toBe(data.commit);
-        expect(repo).toBe(data.repo);
-        return {
-          pull: data.pull,
-          user: data.user,
-          links: {
-            user: `[@${data.user}](https://github.com/${data.user})`,
-            pull:
-              data.pull != null
-                ? `[#${data.pull}](https://github.com/${data.repo}/pull/${data.pull})`
-                : null,
-            commit: `[\`${data.commit}\`](https://github.com/${data.repo}/commit/${data.commit})`,
-          },
-        };
-      },
-      async getInfoFromPullRequest({ pull, repo }) {
-        // let { changes } = getFakeChangeData();
-        let data = changes.find((c) => c.pull === pull)!;
-        expect(data).toBeDefined();
-        expect(pull).toBe(data.pull);
-        expect(repo).toBe(data.repo);
-        return {
-          commit: data.commit,
-          user: data.user,
-          links: {
-            user: `[@${data.user}](https://github.com/${data.user})`,
-            pull: `[#${data.pull}](https://github.com/${data.repo}/pull/${data.pull})`,
-            commit: `[\`${data.commit}\`](https://github.com/${data.repo}/commit/${data.commit})`,
-          },
-        };
-      },
-    };
-  }
-);
+jest.mock("./get-github-info", (): typeof import("./get-github-info") => {
+  // this is duplicated because jest.mock reordering things
+  let repo = "remix-run/remix-react";
+  let changes = [
+    {
+      commit: "a085003",
+      user: "Andarist",
+      pull: 1613,
+      repo,
+    },
+    {
+      commit: "b085003",
+      user: "chaance",
+      pull: null,
+      repo,
+    },
+    {
+      commit: "c085003",
+      user: "chaance",
+      pull: 1618,
+      repo,
+    },
+  ];
+  return {
+    async getInfo({ commit, repo }) {
+      // let { changes } = getFakeChangeData();
+      let data = changes.find((c) => c.commit === commit)!;
+      expect(data).toBeDefined();
+      expect(commit).toBe(data.commit);
+      expect(repo).toBe(data.repo);
+      return {
+        pull: data.pull,
+        user: data.user,
+        links: {
+          user: `[@${data.user}](https://github.com/${data.user})`,
+          pull:
+            data.pull != null
+              ? `[#${data.pull}](https://github.com/${data.repo}/pull/${data.pull})`
+              : null,
+          commit: `[\`${data.commit}\`](https://github.com/${data.repo}/commit/${data.commit})`,
+        },
+      };
+    },
+    async getInfoFromPullRequest({ pull, repo }) {
+      // let { changes } = getFakeChangeData();
+      let data = changes.find((c) => c.pull === pull)!;
+      expect(data).toBeDefined();
+      expect(pull).toBe(data.pull);
+      expect(repo).toBe(data.repo);
+      return {
+        commit: data.commit,
+        user: data.user,
+        links: {
+          user: `[@${data.user}](https://github.com/${data.user})`,
+          pull: `[#${data.pull}](https://github.com/${data.repo}/pull/${data.pull})`,
+          commit: `[\`${data.commit}\`](https://github.com/${data.repo}/commit/${data.commit})`,
+        },
+      };
+    },
+  };
+});
 
 let changeData = changes[0];
 let changeDataWithoutPullRequest = changes[1];

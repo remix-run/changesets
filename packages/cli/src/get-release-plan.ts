@@ -3,7 +3,7 @@ import readChangesets from "@changesets/read";
 import { read } from "./config";
 import type { Config, ReleasePlan } from "@changesets/types";
 import { getPackages } from "@manypkg/get-packages";
-import { readPreState } from "@changesets/pre";
+import { readPreState } from "./pre";
 
 export async function getReleasePlan(
   cwd: string,

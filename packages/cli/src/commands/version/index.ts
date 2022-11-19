@@ -9,7 +9,7 @@ import { assembleReleasePlan } from "../../assemble-release-plan";
 import { getPackages } from "@manypkg/get-packages";
 
 import { removeEmptyFolders } from "../../utils/v1-legacy/removeFolders";
-import { readPreState } from "@changesets/pre";
+import { readPreState } from "../../pre";
 import { ExitError } from "@changesets/errors";
 import { getCommitFunctions } from "../../commit/getCommitFunctions";
 import { getCurrentCommitId } from "@changesets/git";

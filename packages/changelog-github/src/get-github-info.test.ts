@@ -1,4 +1,4 @@
-import { getInfo, getInfoFromPullRequest } from ".";
+import { getInfo, getInfoFromPullRequest } from "./get-github-info";
 import nock from "nock";
 import prettier from "prettier";
 

@@ -1,6 +1,6 @@
 import * as logger from "@changesets/logger";
 import chalk from "chalk";
-import { exitPre, enterPre } from "@changesets/pre";
+import { exitPre, enterPre } from "../../pre";
 import {
   PreExitButNotInPreModeError,
   PreEnterButInPreModeError,

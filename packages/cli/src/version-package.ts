@@ -3,7 +3,7 @@ import type {
   PackageJSON,
   VersionType,
 } from "@changesets/types";
-import getVersionRangeType from "@changesets/get-version-range-type";
+import { getVersionRangeType } from "./get-version-range-type";
 import semver from "semver";
 import { shouldUpdateDependencyBasedOnConfig } from "./utils";
 

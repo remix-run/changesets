@@ -1,4 +1,4 @@
-import getVersionRangeType from "./";
+import { getVersionRangeType } from "./get-version-range-type";
 
 test.each([
   ["^1.0.0", "^"],

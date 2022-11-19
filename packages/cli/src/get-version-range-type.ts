@@ -1,4 +1,4 @@
-export default function getVersionRangeType(
+export function getVersionRangeType(
   versionRange: string
 ): "^" | "~" | ">=" | "<=" | ">" | "" {
   if (versionRange.charAt(0) === "^") return "^";
