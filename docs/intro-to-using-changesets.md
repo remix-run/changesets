@@ -17,13 +17,13 @@ The second two steps can be made part of a CI process.
 ## Add the changeset tool
 
 ```shell
-npm install @changesets/cli && npx changeset init
+npm install @remix-run/changesets && npx changeset init
 ```
 
 or
 
 ```shell
-yarn add @changesets/cli && yarn changeset init
+yarn add @remix-run/changesets && yarn changeset init
 ```
 
 ## Adding changesets

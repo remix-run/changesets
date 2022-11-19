@@ -26,7 +26,7 @@
         }
       ],
       "description": "The configuration for changelog generators.",
-      "default": ["@changesets/cli", null]
+      "default": ["@remix-run/changesets", null]
     },
     "fixed": {
       "type": "array",

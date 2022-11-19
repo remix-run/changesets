@@ -10,7 +10,7 @@ Changesets has a minimal amount of configuration options. Mostly these are for w
   "access": "restricted",
   "baseBranch": "master",
   "ignore": [],
-  "changelog": "@changesets/cli/changelog"
+  "changelog": "@remix-run/changesets/changelog"
 }
 ```
 
@@ -20,7 +20,7 @@ Changesets has a minimal amount of configuration options. Mostly these are for w
 
 This option is for setting if the `changeset add` command and the `changeset version` commands will also add and commit the changed files using git, and how the commit messages should be generated for them.
 
-By default, we do not commit the files, and leave it to the user to commit the files. If it is `true`, we use the default commit message generator (`["@changesets/cli/commit", { "skipCI": "version" }]`). Setting it to a string and options tuple specifies a path from where we will load the commit message generation functions. It expects to be a file that exports one or both of the following:
+By default, we do not commit the files, and leave it to the user to commit the files. If it is `true`, we use the default commit message generator (`["@remix-run/changesets/commit", { "skipCI": "version" }]`). Setting it to a string and options tuple specifies a path from where we will load the commit message generation functions. It expects to be a file that exports one or both of the following:
 
 ```
 {

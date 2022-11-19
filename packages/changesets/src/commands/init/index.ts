@@ -5,7 +5,9 @@ import chalk from "chalk";
 import { defaultWrittenConfig } from "../../config";
 import { info, log, warn, error } from "@changesets/logger";
 
-const pkgPath = path.dirname(require.resolve("@changesets/cli/package.json"));
+const pkgPath = path.dirname(
+  require.resolve("@remix-run/changesets/package.json")
+);
 
 // Modify base branch to "main" without changing defaultWrittenConfig since it also serves as a fallback
 // for config files that don't specify a base branch. Changing that to main would be a breaking change.

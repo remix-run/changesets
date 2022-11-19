@@ -1,7 +1,7 @@
 # Checking for changesets
 
-Using `@changesets/cli`, there is a `status` command. See the docs for it in the
-[@changesets/cli readme](../packages/cli/README.md#status)
+Using `@remix-run/changesets`, there is a `status` command. See the docs for it in the
+[`@remix-run/changesets` readme](../packages/changesets/README.md#status)
 
 We have a [github bot](https://github.com/apps/changeset-bot) and a
 [bitbucket addon](https://bitbucket.org/atlassian/atlaskit-mk-2/src/master/build/bitbucket-release-addon/) that

@@ -42,7 +42,7 @@ test("read reads the config", async () => {
     fixed: [],
     linked: [],
     changelog: false,
-    commit: ["@changesets/cli/commit", { skipCI: "version" }],
+    commit: ["@remix-run/changesets/commit", { skipCI: "version" }],
     access: "restricted",
     baseBranch: "master",
     updateInternalDependencies: "patch",
@@ -66,7 +66,7 @@ test("read reads the config", async () => {
 let defaults: Config = {
   fixed: [],
   linked: [],
-  changelog: ["@changesets/cli/changelog", null],
+  changelog: ["@remix-run/changesets/changelog", null],
   commit: false,
   access: "restricted",
   baseBranch: "master",
@@ -131,7 +131,7 @@ let correctCases: Record<string, CorrectCase> = {
     },
     output: {
       ...defaults,
-      commit: ["@changesets/cli/commit", { skipCI: "version" }],
+      commit: ["@remix-run/changesets/commit", { skipCI: "version" }],
     },
   },
   "commit custom": {
@@ -345,7 +345,7 @@ describe("parser errors", () => {
       unsafeParse({ changelog: {} }, defaultPackages);
     }).toThrowErrorMatchingInlineSnapshot(`
 "Some errors occurred when validating the changesets config:
-The \`changelog\` option is set as {} when the only valid values are undefined, false, a module path(e.g. \\"@changesets/cli/changelog\\" or \\"./some-module\\") or a tuple with a module path and config for the changelog generator(e.g. [\\"@changesets/cli/changelog\\", { someOption: true }])"
+The \`changelog\` option is set as {} when the only valid values are undefined, false, a module path(e.g. \\"@remix-run/changesets/changelog\\" or \\"./some-module\\") or a tuple with a module path and config for the changelog generator(e.g. [\\"@remix-run/changesets/changelog\\", { someOption: true }])"
 `);
   });
   test("changelog array with 3 values", () => {
@@ -360,7 +360,7 @@ The \`changelog\` option is set as [
   \\"some-module\\",
   \\"something\\",
   \\"other\\"
-] when the only valid values are undefined, false, a module path(e.g. \\"@changesets/cli/changelog\\" or \\"./some-module\\") or a tuple with a module path and config for the changelog generator(e.g. [\\"@changesets/cli/changelog\\", { someOption: true }])"
+] when the only valid values are undefined, false, a module path(e.g. \\"@remix-run/changesets/changelog\\" or \\"./some-module\\") or a tuple with a module path and config for the changelog generator(e.g. [\\"@remix-run/changesets/changelog\\", { someOption: true }])"
 `);
   });
   test("changelog array with first value not string", () => {
@@ -371,7 +371,7 @@ The \`changelog\` option is set as [
 The \`changelog\` option is set as [
   false,
   \\"something\\"
-] when the only valid values are undefined, false, a module path(e.g. \\"@changesets/cli/changelog\\" or \\"./some-module\\") or a tuple with a module path and config for the changelog generator(e.g. [\\"@changesets/cli/changelog\\", { someOption: true }])"
+] when the only valid values are undefined, false, a module path(e.g. \\"@remix-run/changesets/changelog\\" or \\"./some-module\\") or a tuple with a module path and config for the changelog generator(e.g. [\\"@remix-run/changesets/changelog\\", { someOption: true }])"
 `);
   });
   test("access other string", () => {
@@ -387,7 +387,7 @@ The \`access\` option is set as \\"something\\" when the only valid values are u
       unsafeParse({ commit: {} }, defaultPackages);
     }).toThrowErrorMatchingInlineSnapshot(`
 "Some errors occurred when validating the changesets config:
-The \`commit\` option is set as {} when the only valid values are undefined or a boolean or a module path (e.g. \\"@changesets/cli/commit\\" or \\"./some-module\\") or a tuple with a module path and config for the commit message generator (e.g. [\\"@changesets/cli/commit\\", { \\"skipCI\\": \\"version\\" }])"
+The \`commit\` option is set as {} when the only valid values are undefined or a boolean or a module path (e.g. \\"@remix-run/changesets/commit\\" or \\"./some-module\\") or a tuple with a module path and config for the commit message generator (e.g. [\\"@remix-run/changesets/commit\\", { \\"skipCI\\": \\"version\\" }])"
 `);
   });
   describe("fixed", () => {

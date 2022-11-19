@@ -1,11 +1,11 @@
 {
-  "name": "@changesets/cli",
+  "name": "@remix-run/changesets",
   "version": "2.25.2",
   "description": "Organise your package versioning and publishing to make both contributors and maintainers happy",
   "bin": {
     "changeset": "bin.js"
   },
-  "repository": "https://github.com/changesets/changesets/tree/main/packages/cli",
+  "repository": "https://github.com/remix-run/changesets/tree/main/packages/cli",
   "files": [
     "default-files",
     "dist",
