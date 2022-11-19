@@ -6,7 +6,7 @@ import * as cli from "../../utils/cli-utilities";
 import { error, log } from "@changesets/logger";
 import type { Release, PackageJSON } from "@changesets/types";
 import type { Package } from "@manypkg/get-packages";
-import { ExitError } from "@changesets/errors";
+import { ExitError } from "../../errors";
 
 const { green, yellow, red, bold, blue, cyan } = chalk;
 

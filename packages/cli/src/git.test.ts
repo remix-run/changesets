@@ -2,7 +2,7 @@ import path from "path";
 import spawn from "spawndamnit";
 import fileUrl from "file-url";
 import { tempdir, testdir } from "@changesets/test-utils";
-import writeChangeset from "@changesets/write";
+import { writeChangeset } from "./write-changeset";
 
 import {
   getCommitsThatAddFiles,

@@ -5,7 +5,7 @@ import { getPackages } from "@manypkg/get-packages";
 import {
   PreExitButNotInPreModeError,
   PreEnterButInPreModeError,
-} from "@changesets/errors";
+} from "./errors";
 
 export async function readPreState(cwd: string): Promise<PreState | undefined> {
   let preStatePath = path.resolve(cwd, ".changeset", "pre.json");

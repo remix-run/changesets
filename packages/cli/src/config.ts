@@ -1,7 +1,7 @@
 import * as fs from "fs-extra";
 import path from "path";
 import micromatch from "micromatch";
-import { ValidationError } from "@changesets/errors";
+import { ValidationError } from "./errors";
 import { warn } from "@changesets/logger";
 import type { Packages } from "@manypkg/get-packages";
 import type {

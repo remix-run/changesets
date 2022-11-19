@@ -10,7 +10,7 @@ import { getPackages } from "@manypkg/get-packages";
 
 import { removeEmptyFolders } from "../../utils/v1-legacy/removeFolders";
 import { readPreState } from "../../pre";
-import { ExitError } from "@changesets/errors";
+import { ExitError } from "../../errors";
 import { getCommitFunctions } from "../../commit/getCommitFunctions";
 import { getCurrentCommitId } from "../../git";
 

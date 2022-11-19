@@ -5,7 +5,7 @@ import { getPackages } from "@manypkg/get-packages";
 import { getDependentsGraph } from "./get-dependents-graph";
 import { error } from "@changesets/logger";
 import { read } from "./config";
-import { ExitError } from "@changesets/errors";
+import { ExitError } from "./errors";
 
 import init from "./commands/init";
 import add from "./commands/add";

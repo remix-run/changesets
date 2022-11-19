@@ -3,7 +3,7 @@ import path from "path";
 import * as git from "../../../git";
 import { defaultConfig } from "../../../config";
 import { silenceLogsInBlock, testdir } from "@changesets/test-utils";
-import writeChangeset from "@changesets/write";
+import { writeChangeset } from "../../../write-changeset";
 
 import status from "..";
 

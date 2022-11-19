@@ -13,7 +13,7 @@
     "node-fetch": "^2.5.0"
   },
   "devDependencies": {
-    "@changesets/parse": "*",
+    "@changesets/parse": "^0.3.15",
     "nock": "^11.7.0",
     "prettier": "^2.7.1"
   }

@@ -4,7 +4,7 @@ import path from "path";
 import {
   PreEnterButInPreModeError,
   PreExitButNotInPreModeError,
-} from "@changesets/errors";
+} from "./errors";
 import { testdir } from "@changesets/test-utils";
 
 describe("enterPre", () => {

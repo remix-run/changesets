@@ -2,7 +2,7 @@ import path from "path";
 import chalk from "chalk";
 import * as fs from "fs-extra";
 import * as logger from "@changesets/logger";
-import { ExitError } from "@changesets/errors";
+import { ExitError } from "../../errors";
 import { testdir } from "@changesets/test-utils";
 
 import pre from "./index";

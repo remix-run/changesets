@@ -1,5 +1,5 @@
 import meow from "meow";
-import { ExitError, InternalError } from "@changesets/errors";
+import { ExitError, InternalError } from "./errors";
 import { error } from "@changesets/logger";
 import { format } from "util";
 import { run } from "./run";

@@ -1,4 +1,4 @@
-import { ExitError } from "@changesets/errors";
+import { ExitError } from "../../errors";
 import { error, info, warn } from "@changesets/logger";
 import type { PackageJSON } from "@changesets/types";
 import pLimit from "p-limit";

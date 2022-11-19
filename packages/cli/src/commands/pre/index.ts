@@ -5,7 +5,7 @@ import {
   PreExitButNotInPreModeError,
   PreEnterButInPreModeError,
   ExitError,
-} from "@changesets/errors";
+} from "../../errors";
 
 export default async function pre(
   cwd: string,

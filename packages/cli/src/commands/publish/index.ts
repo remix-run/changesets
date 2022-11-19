@@ -1,6 +1,6 @@
 import type { PublishedResult } from "./publishPackages";
 import publishPackages from "./publishPackages";
-import { ExitError } from "@changesets/errors";
+import { ExitError } from "../../errors";
 import { error, log, success, warn } from "@changesets/logger";
 import * as git from "../../git";
 import { readPreState } from "../../pre";

@@ -15,7 +15,7 @@ function getPrettierInstance(cwd: string): typeof prettier {
   }
 }
 
-async function writeChangeset(
+export async function writeChangeset(
   changeset: Changeset,
   cwd: string
 ): Promise<string> {
@@ -56,5 +56,3 @@ ${summary}
 
   return changesetID;
 }
-
-export default writeChangeset;

@@ -3,7 +3,7 @@ import path from "path";
 import * as git from "../../git";
 import { warn } from "@changesets/logger";
 import { silenceLogsInBlock, testdir } from "@changesets/test-utils";
-import writeChangeset from "@changesets/write";
+import { writeChangeset } from "../../write-changeset";
 import type { Config, Changeset } from "@changesets/types";
 import { defaultConfig } from "../../config";
 import { getPackages } from "@manypkg/get-packages";

@@ -1,7 +1,7 @@
 import fs from "fs-extra";
 import path from "path";
 import parse from "@changesets/parse";
-import writeChangeset from "./";
+import { writeChangeset } from "./write-changeset";
 
 import humanId from "human-id";
 import { testdir } from "@changesets/test-utils";
