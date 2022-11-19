@@ -1,5 +1,5 @@
 import { temporarilySilenceLogs } from "@changesets/test-utils";
-import getDependencyGraph from "./get-dependency-graph";
+import { getDependencyGraph } from "./get-dependency-graph";
 
 const consoleError = console.error;
 

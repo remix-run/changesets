@@ -2,7 +2,7 @@ import type { Config } from "@changesets/types";
 import fs from "fs-extra";
 import path from "path";
 import { getPackages } from "@manypkg/get-packages";
-import { getDependentsGraph } from "@changesets/get-dependents-graph";
+import { getDependentsGraph } from "./get-dependents-graph";
 import { error } from "@changesets/logger";
 import { read } from "./modules/config";
 import { ExitError } from "@changesets/errors";

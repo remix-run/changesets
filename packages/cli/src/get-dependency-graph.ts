@@ -48,7 +48,7 @@ const getValidRange = (potentialRange: string) => {
   }
 };
 
-export default function getDependencyGraph(
+export function getDependencyGraph(
   packages: Packages,
   opts?: {
     bumpVersionsWithWorkspaceProtocolOnly?: boolean;
