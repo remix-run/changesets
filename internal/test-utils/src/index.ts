@@ -63,6 +63,9 @@ const createLogSilencer = () => {
 };
 
 export const silenceLogsInBlock = () => {
+  if (process.env.DEBUG) {
+    return;
+  }
   const silencer = createLogSilencer();
 
   let dispose: () => void | undefined;
@@ -77,6 +80,9 @@ export const silenceLogsInBlock = () => {
 
 export const temporarilySilenceLogs =
   (testFn: () => Promise<void> | void) => async () => {
+    if (process.env.DEBUG) {
+      return;
+    }
     const silencer = createLogSilencer();
     const dispose = silencer.setup();
     try {
