@@ -1,57 +1,37 @@
-import type { ChangelogFunctions } from "@changesets/types";
-// @ts-ignore
+import { ChangelogFunctions } from "@changesets/types";
 import { config } from "dotenv";
 import { getInfo, getInfoFromPullRequest } from "@changesets/get-github-info";
 
 config();
 
-const changelogFunctions: ChangelogFunctions = {
-  getDependencyReleaseLine: async (
-    changesets,
-    dependenciesUpdated,
-    options
-  ) => {
+export const changelogFunctions: ChangelogFunctions = {
+  async getDependencyReleaseLine(changesets, dependenciesUpdated, options) {
     if (!options.repo) {
       throw new Error(
-        'Please provide a repo to this changelog generator like this:\n"changelog": ["@changesets/changelog-github", { "repo": "org/repo" }]'
+        'Please provide a repo to this changelog generator like this:\n"changelog": ["@remix-run/changelog-github", { "repo": "org/repo" }]'
       );
     }
-    if (dependenciesUpdated.length === 0) return "";
+    if (dependenciesUpdated.length === 0) {
+      return "";
+    }
 
-    const changesetLink = `- Updated dependencies [${(
-      await Promise.all(
-        changesets.map(async (cs) => {
-          if (cs.commit) {
-            let { links } = await getInfo({
-              repo: options.repo,
-              commit: cs.commit,
-            });
-            return links.commit;
-          }
-        })
-      )
-    )
-      .filter((_) => _)
-      .join(", ")}]:`;
-
-    const updatedDepenenciesList = dependenciesUpdated.map(
-      (dependency) => `  - ${dependency.name}@${dependency.newVersion}`
+    let changesetLink = `- Updated dependencies:`;
+    let updatedDepenenciesList = dependenciesUpdated.map(
+      (dependency) => `  - \`${dependency.name}@${dependency.newVersion}\``
     );
-
     return [changesetLink, ...updatedDepenenciesList].join("\n");
   },
-  getReleaseLine: async (changeset, type, options) => {
+  async getReleaseLine(changeset, type, options) {
     if (!options || !options.repo) {
       throw new Error(
-        'Please provide a repo to this changelog generator like this:\n"changelog": ["@changesets/changelog-github", { "repo": "org/repo" }]'
+        'Please provide a repo to this changelog generator like this:\n"changelog": ["@remix-run/changelog-github", { "repo": "org/repo" }]'
       );
     }
 
     let prFromSummary: number | undefined;
     let commitFromSummary: string | undefined;
-    let usersFromSummary: string[] = [];
 
-    const replacedChangelog = changeset.summary
+    let replacedChangelog = changeset.summary
       .replace(/^\s*(?:pr|pull|pull\s+request):\s*#?(\d+)/im, (_, pr) => {
         let num = Number(pr);
         if (!isNaN(num)) prFromSummary = num;
@@ -61,64 +41,54 @@ const changelogFunctions: ChangelogFunctions = {
         commitFromSummary = commit;
         return "";
       })
-      .replace(/^\s*(?:author|user):\s*@?([^\s]+)/gim, (_, user) => {
-        usersFromSummary.push(user);
-        return "";
-      })
+      .replace(/^\s*(?:author|user):\s*@?([^\s]+)/gim, () => "")
       .trim();
 
-    const [firstLine, ...futureLines] = replacedChangelog
+    let [firstLine, ...futureLines] = replacedChangelog
       .split("\n")
-      .map((l) => l.trimRight());
+      .map((l) => l.trimEnd());
 
-    const links = await (async () => {
-      if (prFromSummary !== undefined) {
-        let { links } = await getInfoFromPullRequest({
+    let { pull, commit } = await (async () => {
+      if (prFromSummary != null) {
+        let {
+          links: { pull, commit },
+        } = await getInfoFromPullRequest({
           repo: options.repo,
           pull: prFromSummary,
         });
-        if (commitFromSummary) {
-          links = {
-            ...links,
-            commit: `[\`${commitFromSummary}\`](https://github.com/${options.repo}/commit/${commitFromSummary})`,
-          };
-        }
-        return links;
+        return { pull, commit };
       }
-      const commitToFetchFrom = commitFromSummary || changeset.commit;
+      let commitToFetchFrom = commitFromSummary || changeset.commit;
       if (commitToFetchFrom) {
-        let { links } = await getInfo({
+        let {
+          links: { pull, commit },
+        } = await getInfo({
           repo: options.repo,
           commit: commitToFetchFrom,
         });
-        return links;
+        return { pull, commit };
       }
-      return {
-        commit: null,
-        pull: null,
-        user: null,
-      };
+      return { pull: null, commit: null };
     })();
 
-    const users = usersFromSummary.length
-      ? usersFromSummary
-          .map(
-            (userFromSummary) =>
-              `[@${userFromSummary}](https://github.com/${userFromSummary})`
-          )
-          .join(", ")
-      : links.user;
+    let postfix: string = "";
+    if (pull != null) {
+      postfix = ` (${pull})`;
+    } else if (commit != null) {
+      postfix = ` (${commit})`;
+    }
 
-    const prefix = [
-      links.pull === null ? "" : ` ${links.pull}`,
-      links.commit === null ? "" : ` ${links.commit}`,
-      users === null ? "" : ` Thanks ${users}!`,
-    ].join("");
+    let lines = [
+      `- ${firstLine}${postfix}`,
+      ...futureLines.map((l) => `  ${l}`.trimEnd()),
+    ];
 
-    return `\n\n-${prefix ? `${prefix} -` : ""} ${firstLine}\n${futureLines
-      .map((l) => `  ${l}`)
-      .join("\n")}`;
+    return lines.join("\n");
   },
 };
+
+export const getDependencyReleaseLine =
+  changelogFunctions.getDependencyReleaseLine;
+export const getReleaseLine = changelogFunctions.getReleaseLine;
 
 export default changelogFunctions;

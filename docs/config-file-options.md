@@ -145,13 +145,13 @@ This option is for setting how the changelog for packages should be generated. I
 }
 ```
 
-As well as the default one, you can use `@changesets/changelog-git`, which adds links to commits into changelogs, or `@changesets/changelog-github`, which requires github authentication, and includes a thankyou message to the person who added the changeset as well as a link to the relevant PR.
+As well as the default one, you can use `@changesets/changelog-git`, which adds links to commits into changelogs, or `@remix-run/changelog-github`, which requires github authentication, and includes a thankyou message to the person who added the changeset as well as a link to the relevant PR.
 
 You would specify our github changelog generator with:
 
 ```json
 {
-  "changelog": ["@changesets/changelog-github", { "repo": "<org>/<repo>" }]
+  "changelog": ["@remix-run/changelog-github", { "repo": "<org>/<repo>" }]
 }
 ```
 

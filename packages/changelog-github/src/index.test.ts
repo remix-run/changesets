@@ -1,74 +1,97 @@
-import changelogFunctions from "./index";
+import { getReleaseLine } from "./index";
 import parse from "@changesets/parse";
 
-const getReleaseLine = changelogFunctions.getReleaseLine;
+const REPO = "remix-run/remix-react";
+const changes: ChangeData[] = [
+  {
+    commit: "a085003",
+    user: "Andarist",
+    pull: 1613,
+    repo: REPO,
+  },
+  {
+    commit: "b085003",
+    user: "chaance",
+    pull: null,
+    repo: REPO,
+  },
+  {
+    commit: "c085003",
+    user: "chaance",
+    pull: 1618,
+    repo: REPO,
+  },
+];
 
 jest.mock(
   "@changesets/get-github-info",
   (): typeof import("@changesets/get-github-info") => {
     // this is duplicated because jest.mock reordering things
-    const data = {
-      commit: "a085003",
-      user: "Andarist",
-      pull: 1613,
-      repo: "emotion-js/emotion",
-    };
-    const links = {
-      user: `[@${data.user}](https://github.com/${data.user})`,
-      pull: `[#${data.pull}](https://github.com/${data.repo}/pull/${data.pull})`,
-      commit: `[\`${data.commit}\`](https://github.com/${data.repo}/commit/${data.commit})`,
-    };
+    let repo = "remix-run/remix-react";
+    let changes = [
+      {
+        commit: "a085003",
+        user: "Andarist",
+        pull: 1613,
+        repo,
+      },
+      {
+        commit: "b085003",
+        user: "chaance",
+        pull: null,
+        repo,
+      },
+      {
+        commit: "c085003",
+        user: "chaance",
+        pull: 1618,
+        repo,
+      },
+    ];
     return {
       async getInfo({ commit, repo }) {
+        // let { changes } = getFakeChangeData();
+        let data = changes.find((c) => c.commit === commit)!;
+        expect(data).toBeDefined();
         expect(commit).toBe(data.commit);
         expect(repo).toBe(data.repo);
         return {
           pull: data.pull,
           user: data.user,
-          links,
+          links: {
+            user: `[@${data.user}](https://github.com/${data.user})`,
+            pull:
+              data.pull != null
+                ? `[#${data.pull}](https://github.com/${data.repo}/pull/${data.pull})`
+                : null,
+            commit: `[\`${data.commit}\`](https://github.com/${data.repo}/commit/${data.commit})`,
+          },
         };
       },
       async getInfoFromPullRequest({ pull, repo }) {
+        // let { changes } = getFakeChangeData();
+        let data = changes.find((c) => c.pull === pull)!;
+        expect(data).toBeDefined();
         expect(pull).toBe(data.pull);
         expect(repo).toBe(data.repo);
         return {
           commit: data.commit,
           user: data.user,
-          links,
+          links: {
+            user: `[@${data.user}](https://github.com/${data.user})`,
+            pull: `[#${data.pull}](https://github.com/${data.repo}/pull/${data.pull})`,
+            commit: `[\`${data.commit}\`](https://github.com/${data.repo}/commit/${data.commit})`,
+          },
         };
       },
     };
   }
 );
 
-const getChangeset = (content: string, commit: string | undefined) => {
-  return [
-    {
-      ...parse(
-        `---
-  pkg: "minor"
-  ---
+let changeData = changes[0];
+let changeDataWithoutPullRequest = changes[1];
 
-  something
-  ${content}
-  `
-      ),
-      id: "some-id",
-      commit,
-    },
-    "minor",
-    { repo: data.repo },
-  ] as const;
-};
-
-const data = {
-  commit: "a085003",
-  user: "Andarist",
-  pull: 1613,
-  repo: "emotion-js/emotion",
-};
-
-describe.each([data.commit, "wrongcommit", undefined])(
+describe.each([changeData.commit, "wrongcommit", undefined])(
   "with commit from changeset of %s",
   (commitFromChangeset) => {
     describe.each(["pr", "pull request", "pull"])(
@@ -78,58 +101,115 @@ describe.each([data.commit, "wrongcommit", undefined])(
           expect(
             await getReleaseLine(
               ...getChangeset(
-                `${keyword}: ${kind === "with #" ? "#" : ""}${data.pull}`,
+                "something",
+                `${keyword}: ${kind === "with #" ? "#" : ""}${changeData.pull}`,
                 commitFromChangeset
               )
             )
           ).toEqual(
-            `\n\n- [#1613](https://github.com/emotion-js/emotion/pull/1613) [\`a085003\`](https://github.com/emotion-js/emotion/commit/a085003) Thanks [@Andarist](https://github.com/Andarist)! - something\n`
+            `- something ([#1613](https://github.com/remix-run/remix-react/pull/1613))`
           );
         });
       }
     );
-    test("override commit with commit keyword", async () => {
-      expect(
-        await getReleaseLine(
-          ...getChangeset(`commit: ${data.commit}`, commitFromChangeset)
-        )
-      ).toEqual(
-        `\n\n- [#1613](https://github.com/emotion-js/emotion/pull/1613) [\`a085003\`](https://github.com/emotion-js/emotion/commit/a085003) Thanks [@Andarist](https://github.com/Andarist)! - something\n`
-      );
-    });
-  }
-);
-
-describe.each(["author", "user"])(
-  "override author with %s keyword",
-  (keyword) => {
-    test.each(["with @", "without @"] as const)("%s", async (kind) => {
+    it("overrides commit with commit keyword", async () => {
       expect(
         await getReleaseLine(
           ...getChangeset(
-            `${keyword}: ${kind === "with @" ? "@" : ""}other`,
-            data.commit
+            "something",
+            `commit: ${changeData.commit}`,
+            commitFromChangeset
           )
         )
       ).toEqual(
-        `\n\n- [#1613](https://github.com/emotion-js/emotion/pull/1613) [\`a085003\`](https://github.com/emotion-js/emotion/commit/a085003) Thanks [@other](https://github.com/other)! - something\n`
+        `- something ([#1613](https://github.com/remix-run/remix-react/pull/1613))`
       );
     });
   }
 );
 
-it("with multiple authors", async () => {
+test("with multiple authors", async () => {
   expect(
     await getReleaseLine(
       ...getChangeset(
+        "something",
         ["author: @Andarist", "author: @mitchellhamilton"].join("\n"),
-        data.commit
+        changeData.commit
       )
     )
-  ).toMatchInlineSnapshot(`
-    "
+  ).toMatchInlineSnapshot(
+    '"- something ([#1613](https://github.com/remix-run/remix-react/pull/1613))"'
+  );
+});
 
-    - [#1613](https://github.com/emotion-js/emotion/pull/1613) [\`a085003\`](https://github.com/emotion-js/emotion/commit/a085003) Thanks [@Andarist](https://github.com/Andarist), [@mitchellhamilton](https://github.com/mitchellhamilton)! - something
-    "
+test("change without a pull request", async () => {
+  expect(
+    await getReleaseLine(
+      ...getChangeset(
+        "something",
+        "author: @chaance",
+        changeDataWithoutPullRequest.commit
+      )
+    )
+  ).toMatchInlineSnapshot(
+    '"- something ([`b085003`](https://github.com/remix-run/remix-react/commit/b085003))"'
+  );
+});
+
+test("with multiple changesets", async () => {
+  let lines = await Promise.all([
+    getReleaseLine(
+      ...getChangeset("something", "author: @Andarist", changeData.commit)
+    ),
+    getReleaseLine(
+      ...getChangeset(
+        "something else",
+        "author: @chaance",
+        changeDataWithoutPullRequest.commit
+      )
+    ),
+    getReleaseLine(
+      ...getChangeset(
+        "and one more thing",
+        "author: @chaance",
+        changes[2].commit
+      )
+    ),
+  ]);
+
+  expect(lines.join("\n")).toMatchInlineSnapshot(`
+    "- something ([#1613](https://github.com/remix-run/remix-react/pull/1613))
+    - something else ([\`b085003\`](https://github.com/remix-run/remix-react/commit/b085003))
+    - and one more thing ([#1618](https://github.com/remix-run/remix-react/pull/1618))"
   `);
 });
+
+function getChangeset(
+  message: string,
+  content: string,
+  commit: string | undefined
+) {
+  return [
+    {
+      ...parse(
+        `---
+    pkg: "minor"
+    ---
+    ${message}
+    ${content}
+    `
+      ),
+      id: "some-id",
+      commit,
+    },
+    "minor",
+    { repo: REPO },
+  ] as const;
+}
+
+interface ChangeData {
+  user: string;
+  repo: string;
+  commit: string;
+  pull: number | null;
+}

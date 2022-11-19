@@ -70,7 +70,7 @@ type getReleaseLine(
     },
     // the type of the change this changeset refers to, as "major", "minor", or "patch"
     type
-    // This needs to be explained - see @changesets/changelog-github's code for how this works
+    // This needs to be explained - see the code in `@remix-run/changelog-github` for how this works
     changelogOpts
 ) => string
 ```
