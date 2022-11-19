@@ -1,4 +1,5 @@
-import { getPackages, Package } from "@manypkg/get-packages";
+import type { Package } from "@manypkg/get-packages";
+import { getPackages } from "@manypkg/get-packages";
 import path from "path";
 import * as semver from "semver";
 import {

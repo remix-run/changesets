@@ -1,6 +1,6 @@
 import * as git from "@changesets/git";
-import { Package, Tool } from "@manypkg/get-packages";
-import { PublishedResult } from "./publishPackages";
+import type { Package, Tool } from "@manypkg/get-packages";
+import type { PublishedResult } from "./publishPackages";
 
 export async function getUntaggedPrivatePackages(
   privatePackages: Package[],

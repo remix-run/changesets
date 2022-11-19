@@ -1,8 +1,8 @@
 import { read, parse } from "./";
 import jestInCase from "jest-in-case";
 import * as logger from "@changesets/logger";
-import { Config, WrittenConfig } from "@changesets/types";
-import { Packages } from "@manypkg/get-packages";
+import type { Config, WrittenConfig } from "@changesets/types";
+import type { Packages } from "@manypkg/get-packages";
 import { testdir } from "@changesets/test-utils";
 
 jest.mock("@changesets/logger");

@@ -1,5 +1,5 @@
 import { incrementVersion } from "./increment";
-import { InternalRelease, PreInfo } from "./types";
+import type { InternalRelease, PreInfo } from "./types";
 
 describe("incrementVersion", () => {
   describe("pre mode", () => {

@@ -6,7 +6,7 @@ import path from "path";
 import * as git from "@changesets/git";
 import getReleasePlan from "@changesets/get-release-plan";
 import { error, log, info, warn } from "@changesets/logger";
-import {
+import type {
   VersionType,
   Release,
   ComprehensiveRelease,

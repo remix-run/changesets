@@ -1,7 +1,7 @@
 import fs from "fs-extra";
 import path from "path";
 import parse from "@changesets/parse";
-import { NewChangeset } from "@changesets/types";
+import type { NewChangeset } from "@changesets/types";
 import * as git from "@changesets/git";
 import getOldChangesetsAndWarn from "./legacy";
 

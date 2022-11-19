@@ -1,6 +1,6 @@
-import { Config } from "@changesets/types";
-import { Package } from "@manypkg/get-packages";
-import { InternalRelease } from "./types";
+import type { Config } from "@changesets/types";
+import type { Package } from "@manypkg/get-packages";
+import type { InternalRelease } from "./types";
 import { getCurrentHighestVersion, getHighestReleaseType } from "./utils";
 
 export default function matchFixedConstraint(

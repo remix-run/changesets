@@ -1,5 +1,5 @@
-import { Config } from "@changesets/types";
-import { PackageJSON } from "@changesets/types";
+import type { Config } from "@changesets/types";
+import type { PackageJSON } from "@changesets/types";
 
 export function isListablePackage(config: Config, packageJson: PackageJSON) {
   const packageIgnoredInConfig = config.ignore.includes(packageJson.name);

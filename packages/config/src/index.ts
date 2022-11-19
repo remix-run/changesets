@@ -3,8 +3,8 @@ import path from "path";
 import micromatch from "micromatch";
 import { ValidationError } from "@changesets/errors";
 import { warn } from "@changesets/logger";
-import { Packages } from "@manypkg/get-packages";
-import {
+import type { Packages } from "@manypkg/get-packages";
+import type {
   Config,
   WrittenConfig,
   Fixed,

@@ -175,7 +175,7 @@ describe("status", () => {
     expect(process.exit).not.toHaveBeenCalled();
   });
 
-  it.skip("should respect the verbose flag", () => false);
+  it.skip("should respect the verbose flag", () => {});
   it("should respect the output flag", async () => {
     const cwd = await testdir({
       "package.json": JSON.stringify({

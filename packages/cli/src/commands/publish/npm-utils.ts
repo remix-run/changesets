@@ -1,6 +1,6 @@
 import { ExitError } from "@changesets/errors";
 import { error, info, warn } from "@changesets/logger";
-import { PackageJSON } from "@changesets/types";
+import type { PackageJSON } from "@changesets/types";
 import pLimit from "p-limit";
 import preferredPM from "preferred-pm";
 import chalk from "chalk";
@@ -8,7 +8,7 @@ import spawn from "spawndamnit";
 import semver from "semver";
 import { askQuestion } from "../../utils/cli-utilities";
 import isCI from "is-ci";
-import { TwoFactorState } from "../../utils/types";
+import type { TwoFactorState } from "../../utils/types";
 import { getLastJsonObjectFromString } from "../../utils/getLastJsonObjectFromString";
 
 const npmRequestLimit = pLimit(40);

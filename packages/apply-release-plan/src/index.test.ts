@@ -1,4 +1,4 @@
-import {
+import type {
   ReleasePlan,
   Config,
   NewChangeset,
@@ -13,11 +13,8 @@ import { defaultConfig } from "@changesets/config";
 
 import applyReleasePlan from "./";
 import { getPackages } from "@manypkg/get-packages";
-import {
-  temporarilySilenceLogs,
-  testdir,
-  Fixture,
-} from "@changesets/test-utils";
+import type { Fixture } from "@changesets/test-utils";
+import { temporarilySilenceLogs, testdir } from "@changesets/test-utils";
 
 class FakeReleasePlan {
   changesets: NewChangeset[];

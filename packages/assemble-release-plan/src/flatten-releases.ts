@@ -1,9 +1,9 @@
 // This function takes in changesets and returns one release per
 // package listed in the changesets
 
-import { NewChangeset } from "@changesets/types";
-import { Package } from "@manypkg/get-packages";
-import { InternalRelease } from "./types";
+import type { NewChangeset } from "@changesets/types";
+import type { Package } from "@manypkg/get-packages";
+import type { InternalRelease } from "./types";
 
 export default function flattenReleases(
   changesets: NewChangeset[],

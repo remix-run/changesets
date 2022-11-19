@@ -1,6 +1,6 @@
 import { add, commit } from "@changesets/git";
 import { silenceLogsInBlock, tempdir, testdir } from "@changesets/test-utils";
-import { Changeset } from "@changesets/types";
+import type { Changeset } from "@changesets/types";
 import writeChangeset from "@changesets/write";
 import fileUrl from "file-url";
 import fs from "fs-extra";

@@ -1,9 +1,10 @@
-import publishPackages, { PublishedResult } from "./publishPackages";
+import type { PublishedResult } from "./publishPackages";
+import publishPackages from "./publishPackages";
 import { ExitError } from "@changesets/errors";
 import { error, log, success, warn } from "@changesets/logger";
 import * as git from "@changesets/git";
 import { readPreState } from "@changesets/pre";
-import { Config, PreState } from "@changesets/types";
+import type { Config, PreState } from "@changesets/types";
 import { getPackages } from "@manypkg/get-packages";
 import chalk from "chalk";
 import { getUntaggedPrivatePackages } from "./getUntaggedPrivatePackages";

@@ -1,8 +1,8 @@
 // This is a modified version of the graph-getting in bolt
 import semver from "semver";
 import chalk from "chalk";
-import { Packages, Package } from "@manypkg/get-packages";
-import { PackageJSON } from "@changesets/types";
+import type { Packages, Package } from "@manypkg/get-packages";
+import type { PackageJSON } from "@changesets/types";
 
 const DEPENDENCY_TYPES = [
   "dependencies",

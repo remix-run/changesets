@@ -1,12 +1,12 @@
 import { join } from "path";
 import semver from "semver";
 import chalk from "chalk";
-import { AccessType } from "@changesets/types";
-import { Package } from "@manypkg/get-packages";
+import type { AccessType } from "@changesets/types";
+import type { Package } from "@manypkg/get-packages";
 import { info, warn } from "@changesets/logger";
-import { PreState } from "@changesets/types";
+import type { PreState } from "@changesets/types";
 import * as npmUtils from "./npm-utils";
-import { TwoFactorState } from "../../utils/types";
+import type { TwoFactorState } from "../../utils/types";
 import isCI from "is-ci";
 
 type PublishedState = "never" | "published" | "only-pre";

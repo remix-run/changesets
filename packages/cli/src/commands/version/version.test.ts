@@ -4,7 +4,7 @@ import * as git from "@changesets/git";
 import { warn } from "@changesets/logger";
 import { silenceLogsInBlock, testdir } from "@changesets/test-utils";
 import writeChangeset from "@changesets/write";
-import { Config, Changeset } from "@changesets/types";
+import type { Config, Changeset } from "@changesets/types";
 import { defaultConfig } from "@changesets/config";
 import { getPackages } from "@manypkg/get-packages";
 import pre from "../pre";
@@ -30,13 +30,13 @@ function mockGlobalDate<
       }
     } as typeof Date;
 
-    // eslint-disable-next-line no-global-assign
+    // eslint-disable-next-line no-global-assign, no-native-reassign
     Date = MockedDate;
 
     try {
       await testFn(...args);
     } finally {
-      // eslint-disable-next-line no-global-assign
+      // eslint-disable-next-line no-global-assign, no-native-reassign
       Date = originalDate;
     }
   };
@@ -1952,19 +1952,19 @@ describe("pre", () => {
         },
       ],
       `
-      Object {
-        "0": Object {
+      Array [
+        Object {
           "dependencies": Object {
             "pkg-b": "1.0.1-next.0",
           },
           "name": "pkg-a",
           "version": "1.1.0-next.3",
         },
-        "1": Object {
+        Object {
           "name": "pkg-b",
           "version": "1.0.1-next.0",
         },
-      }
+      ]
     `
     );
     await pre(cwd, { command: "exit" });
