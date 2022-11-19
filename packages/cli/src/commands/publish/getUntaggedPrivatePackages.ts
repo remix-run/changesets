@@ -1,4 +1,4 @@
-import * as git from "@changesets/git";
+import * as git from "../../git";
 import type { Package, Tool } from "@manypkg/get-packages";
 import type { PublishedResult } from "./publishPackages";
 

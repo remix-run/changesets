@@ -2,8 +2,7 @@ import fs from "fs-extra";
 import path from "path";
 import parse from "@changesets/parse";
 import type { NewChangeset } from "@changesets/types";
-import * as git from "@changesets/git";
-import getOldChangesetsAndWarn from "./legacy";
+import * as git from "./git";
 
 async function filterChangesetsSinceRef(
   changesets: Array<string>,
@@ -19,7 +18,7 @@ async function filterChangesetsSinceRef(
   return changesets.filter((dir) => newHashes.includes(dir));
 }
 
-export default async function getChangesets(
+export async function getChangesets(
   cwd: string,
   sinceRef?: string
 ): Promise<Array<NewChangeset>> {
@@ -42,8 +41,6 @@ export default async function getChangesets(
     );
   }
 
-  let oldChangesetsPromise = getOldChangesetsAndWarn(changesetBase, contents);
-
   let changesets = contents.filter(
     (file) =>
       !file.startsWith(".") && file.endsWith(".md") && file !== "README.md"
@@ -57,8 +54,5 @@ export default async function getChangesets(
 
     return { ...parse(changeset), id: file.replace(".md", "") };
   });
-  return [
-    ...(await oldChangesetsPromise),
-    ...(await Promise.all(changesetContents)),
-  ];
+  return await Promise.all(changesetContents);
 }

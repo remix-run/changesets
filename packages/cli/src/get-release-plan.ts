@@ -1,5 +1,5 @@
 import { assembleReleasePlan } from "./assemble-release-plan";
-import readChangesets from "@changesets/read";
+import { getChangesets } from "./get-changesets";
 import { read } from "./config";
 import type { Config, ReleasePlan } from "@changesets/types";
 import { getPackages } from "@manypkg/get-packages";
@@ -14,7 +14,7 @@ export async function getReleasePlan(
   const preState = await readPreState(cwd);
   const readConfig = await read(cwd, packages);
   const config = passedConfig ? { ...readConfig, ...passedConfig } : readConfig;
-  const changesets = await readChangesets(cwd, sinceRef);
+  const changesets = await getChangesets(cwd, sinceRef);
 
   return assembleReleasePlan(changesets, packages, config, preState);
 }

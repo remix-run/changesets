@@ -3,7 +3,7 @@ import path from "path";
 import { spawn } from "child_process";
 
 import * as cli from "../../utils/cli-utilities";
-import * as git from "@changesets/git";
+import * as git from "../../git";
 import { info, log, warn } from "@changesets/logger";
 import type { Config } from "@changesets/types";
 import { getPackages } from "@manypkg/get-packages";

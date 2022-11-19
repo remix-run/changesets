@@ -15,7 +15,7 @@ import {
   getChangedChangesetFilesSinceRef,
   getAllTags,
   tagExists,
-} from "./";
+} from "./git";
 
 async function getCurrentCommit(cwd: string) {
   const cmd = await spawn("git", ["rev-parse", "HEAD"], { cwd });

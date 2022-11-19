@@ -1,10 +1,10 @@
 import chalk from "chalk";
 import path from "path";
-import * as git from "@changesets/git";
+import * as git from "../../git";
 import { log, warn, error } from "@changesets/logger";
 import type { Config } from "@changesets/types";
 import { applyReleasePlan } from "../../apply-release-plan";
-import readChangesets from "@changesets/read";
+import { getChangesets } from "../../get-changesets";
 import { assembleReleasePlan } from "../../assemble-release-plan";
 import { getPackages } from "@manypkg/get-packages";
 
@@ -12,7 +12,7 @@ import { removeEmptyFolders } from "../../utils/v1-legacy/removeFolders";
 import { readPreState } from "../../pre";
 import { ExitError } from "@changesets/errors";
 import { getCommitFunctions } from "../../commit/getCommitFunctions";
-import { getCurrentCommitId } from "@changesets/git";
+import { getCurrentCommitId } from "../../git";
 
 let importantSeparator = chalk.red(
   "===============================IMPORTANT!==============================="
@@ -35,7 +35,7 @@ export default async function version(
     commit: options.snapshot ? false : config.commit,
   };
   const [changesets, preState] = await Promise.all([
-    readChangesets(cwd),
+    getChangesets(cwd),
     readPreState(cwd),
     removeEmptyFolders(path.resolve(cwd, ".changeset")),
   ]);

@@ -1,6 +1,6 @@
 import fs from "fs-extra";
 import path from "path";
-import * as git from "@changesets/git";
+import * as git from "../../git";
 import { warn } from "@changesets/logger";
 import { silenceLogsInBlock, testdir } from "@changesets/test-utils";
 import writeChangeset from "@changesets/write";
@@ -58,7 +58,7 @@ let defaultOptions = {
 const consoleError = console.error;
 
 jest.mock("../../utils/cli-utilities");
-jest.mock("@changesets/git");
+jest.mock("../../git");
 jest.mock("human-id");
 jest.mock("@changesets/logger");
 

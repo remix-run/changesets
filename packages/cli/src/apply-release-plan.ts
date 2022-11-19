@@ -7,7 +7,7 @@ import type {
 } from "@changesets/types";
 
 import { defaultConfig } from "./config";
-import * as git from "@changesets/git";
+import * as git from "./git";
 import resolveFrom from "resolve-from";
 import type { Packages } from "@manypkg/get-packages";
 import detectIndent from "detect-indent";

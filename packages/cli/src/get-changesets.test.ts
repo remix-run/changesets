@@ -2,7 +2,7 @@ import fs from "fs-extra";
 import path from "path";
 import outdent from "outdent";
 
-import read from "./";
+import { getChangesets } from "./get-changesets";
 import { silenceLogsInBlock, testdir } from "@changesets/test-utils";
 
 silenceLogsInBlock();
@@ -17,7 +17,7 @@ describe("read changesets from disc", () => {
 Nice simple summary`,
     });
 
-    const changesets = await read(cwd);
+    const changesets = await getChangesets(cwd);
     expect(changesets).toEqual([
       {
         releases: [{ name: "cool-package", type: "minor" }],
@@ -37,7 +37,7 @@ Nice simple summary
 `,
     });
 
-    const changesets = await read(cwd);
+    const changesets = await getChangesets(cwd);
     expect(changesets).toEqual([
       {
         releases: [{ name: "cool-package", type: "minor" }],
@@ -57,7 +57,7 @@ Nice simple summary
 Nice simple summary`,
     });
 
-    const changesets = await read(cwd);
+    const changesets = await getChangesets(cwd);
     expect(changesets).toEqual([
       {
         releases: [{ name: "cool-package", type: "minor" }],
@@ -81,7 +81,7 @@ I'm amazed we needed to update the best package, because it was already the best
 `,
     });
 
-    const changesets = await read(cwd);
+    const changesets = await getChangesets(cwd);
     expect(changesets).toEqual([
       {
         releases: [{ name: "cool-package", type: "minor" }],
@@ -100,14 +100,14 @@ I'm amazed we needed to update the best package, because it was already the best
     const cwd = await testdir({});
     await fs.mkdir(path.join(cwd, ".changeset"));
 
-    const changesets = await read(cwd);
+    const changesets = await getChangesets(cwd);
     expect(changesets).toEqual([]);
   });
   it("should error when there is no changeset folder", async () => {
     const cwd = await testdir({});
 
     try {
-      await read(cwd);
+      await getChangesets(cwd);
     } catch (e) {
       expect((e as Error).message).toBe(
         "There is no .changeset directory in this project"
@@ -127,7 +127,7 @@ I'm amazed we needed to update the best package, because it was already the best
 Everything is wrong`,
     });
 
-    expect(read(cwd)).rejects.toThrow(
+    expect(getChangesets(cwd)).rejects.toThrow(
       outdent`could not parse changeset - invalid frontmatter: ---
 
       "cool-package": minor
@@ -143,7 +143,7 @@ Everything is wrong`,
 ---`,
     });
 
-    const changesets = await read(cwd);
+    const changesets = await getChangesets(cwd);
     expect(changesets).toEqual([
       {
         releases: [],
@@ -183,36 +183,12 @@ Awesome feature, hidden behind a feature flag
 `,
     });
 
-    const changesets = await read(cwd);
+    const changesets = await getChangesets(cwd);
     expect(changesets).toEqual([
       {
         releases: [{ name: "pkg-a", type: "minor" }],
         summary: "Nice simple summary, much wow",
         id: "changesets-are-beautiful",
-      },
-    ]);
-  });
-
-  it("should read an old changeset", async () => {
-    const cwd = await testdir({
-      ".changeset/basic-changeset/changes.json": JSON.stringify({
-        releases: [
-          {
-            name: "cool-package",
-            type: "minor",
-          },
-        ],
-        dependents: [],
-      }),
-      ".changeset/basic-changeset/changes.md": `Nice simple summary`,
-    });
-
-    const changesets = await read(cwd);
-    expect(changesets).toEqual([
-      {
-        releases: [{ name: "cool-package", type: "minor" }],
-        summary: "Nice simple summary",
-        id: "basic-changeset",
       },
     ]);
   });

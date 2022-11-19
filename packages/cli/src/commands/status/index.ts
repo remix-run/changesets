@@ -3,7 +3,7 @@ import table from "tty-table";
 import fs from "fs-extra";
 import path from "path";
 
-import * as git from "@changesets/git";
+import * as git from "../../git";
 import { getReleasePlan } from "../../get-release-plan";
 import { error, log, info, warn } from "@changesets/logger";
 import type {

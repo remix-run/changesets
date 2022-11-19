@@ -1,6 +1,6 @@
 import path from "path";
 import stripAnsi from "strip-ansi";
-import * as git from "@changesets/git";
+import * as git from "../../../git";
 import { defaultConfig } from "../../../config";
 import { silenceLogsInBlock, testdir } from "@changesets/test-utils";
 import writeChangeset from "@changesets/write";
@@ -15,7 +15,7 @@ import {
 import addChangeset from "..";
 
 jest.mock("../../../utils/cli-utilities");
-jest.mock("@changesets/git");
+jest.mock("../../../git");
 jest.mock("@changesets/write");
 // @ts-ignore
 writeChangeset.mockImplementation(() => Promise.resolve("abcdefg"));

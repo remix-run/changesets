@@ -4,7 +4,7 @@ import type {
   NewChangeset,
   ComprehensiveRelease,
 } from "@changesets/types";
-import * as git from "@changesets/git";
+import * as git from "./git";
 import fs from "fs-extra";
 import path from "path";
 import outdent from "outdent";

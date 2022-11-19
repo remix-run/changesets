@@ -1,4 +1,4 @@
-import * as git from "@changesets/git";
+import * as git from "../../git";
 import { getPackages } from "@manypkg/get-packages";
 import { log } from "@changesets/logger";
 

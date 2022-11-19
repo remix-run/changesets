@@ -1,8 +1,8 @@
 import { silenceLogsInBlock, testdir } from "@changesets/test-utils";
-import * as git from "@changesets/git";
+import * as git from "../../../git";
 import tag from "../index";
 
-jest.mock("@changesets/git");
+jest.mock("../../../git");
 
 describe("tag command", () => {
   silenceLogsInBlock();

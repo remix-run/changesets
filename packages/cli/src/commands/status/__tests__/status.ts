@@ -1,6 +1,6 @@
 import fs from "fs-extra";
 import path from "path";
-import * as git from "@changesets/git";
+import * as git from "../../../git";
 import { defaultConfig } from "../../../config";
 import { silenceLogsInBlock, testdir } from "@changesets/test-utils";
 import writeChangeset from "@changesets/write";
@@ -10,7 +10,7 @@ import status from "..";
 import humanId from "human-id";
 
 jest.mock("human-id");
-jest.mock("@changesets/git");
+jest.mock("../../../git");
 
 describe("status", () => {
   silenceLogsInBlock();
