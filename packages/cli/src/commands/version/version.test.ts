@@ -5,7 +5,7 @@ import { warn } from "@changesets/logger";
 import { silenceLogsInBlock, testdir } from "@changesets/test-utils";
 import writeChangeset from "@changesets/write";
 import type { Config, Changeset } from "@changesets/types";
-import { defaultConfig } from "@changesets/config";
+import { defaultConfig } from "../../modules/config";
 import { getPackages } from "@manypkg/get-packages";
 import pre from "../pre";
 import version from "./index";

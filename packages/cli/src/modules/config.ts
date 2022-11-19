@@ -11,11 +11,11 @@ import type {
   Linked,
   PackageGroup,
 } from "@changesets/types";
-import packageJson from "../package.json";
+import packageJson from "../../package.json";
 import { getDependentsGraph } from "@changesets/get-dependents-graph";
 
 export let defaultWrittenConfig = {
-  $schema: `https://unpkg.com/@changesets/config@${packageJson.version}/schema.json`,
+  $schema: `https://unpkg.com/${packageJson.name}/@${packageJson.version}/schema.json`,
   changelog: "@changesets/cli/changelog",
   commit: false,
   fixed: [] as Fixed,

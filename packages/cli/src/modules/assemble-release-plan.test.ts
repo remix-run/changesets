@@ -1,4 +1,4 @@
-import { defaultConfig } from "@changesets/config";
+import { defaultConfig } from "./config";
 import { assembleReleasePlan } from "./assemble-release-plan";
 import { FakeFullState } from "./test-utils";
 

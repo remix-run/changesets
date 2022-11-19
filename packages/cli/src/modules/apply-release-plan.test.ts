@@ -9,7 +9,7 @@ import fs from "fs-extra";
 import path from "path";
 import outdent from "outdent";
 import spawn from "spawndamnit";
-import { defaultConfig } from "@changesets/config";
+import { defaultConfig } from "./config";
 
 import { applyReleasePlan } from "./apply-release-plan";
 import { getPackages } from "@manypkg/get-packages";

@@ -1,7 +1,7 @@
 import fs from "fs-extra";
 import path from "path";
 import * as git from "@changesets/git";
-import { defaultConfig } from "@changesets/config";
+import { defaultConfig } from "../../../modules/config";
 import { silenceLogsInBlock, testdir } from "@changesets/test-utils";
 import writeChangeset from "@changesets/write";
 

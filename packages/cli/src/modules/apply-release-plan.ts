@@ -6,7 +6,7 @@ import type {
   ModCompWithPackage,
 } from "@changesets/types";
 
-import { defaultConfig } from "@changesets/config";
+import { defaultConfig } from "./config";
 import * as git from "@changesets/git";
 import resolveFrom from "resolve-from";
 import type { Packages } from "@manypkg/get-packages";
