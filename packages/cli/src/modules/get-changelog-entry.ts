@@ -25,7 +25,7 @@ async function generateChangesForVersionTypeMarkdown(
 }
 
 // release is the package and version we are releasing
-export default async function getChangelogEntry(
+export async function getChangelogEntry(
   release: ModCompWithPackage,
   releases: ModCompWithPackage[],
   changesets: NewChangesetWithCommit[],

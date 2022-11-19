@@ -1,4 +1,4 @@
-import { incrementVersion } from "./increment";
+import { incrementVersion } from "./increment-version";
 import type { InternalRelease, PreInfo } from "./types";
 
 describe("incrementVersion", () => {

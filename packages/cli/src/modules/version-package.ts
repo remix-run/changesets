@@ -14,7 +14,7 @@ const DEPENDENCY_TYPES = [
   "optionalDependencies",
 ] as const;
 
-export default function versionPackage(
+export function versionPackage(
   release: ComprehensiveRelease & {
     changelog: string | null;
     packageJson: PackageJSON;

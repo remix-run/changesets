@@ -44,24 +44,28 @@ function getRelease({
   return { name, type };
 }
 
-let getSimpleSetup = () => ({
-  packages: {
-    root: {
-      packageJson: {
-        name: "root",
-        version: "0.0.0",
+function getSimpleSetup() {
+  return {
+    packages: {
+      root: {
+        packageJson: {
+          name: "root",
+          version: "0.0.0",
+        },
+        dir: "/",
       },
-      dir: "/",
+      packages: [getPackage({ name: "pkg-a", version: "1.0.0" })],
+      tool: "yarn" as const,
     },
-    packages: [getPackage({ name: "pkg-a", version: "1.0.0" })],
-    tool: "yarn" as const,
-  },
-  changesets: [
-    getChangeset({ releases: [getRelease({ name: "pkg-a", type: "patch" })] }),
-  ],
-});
+    changesets: [
+      getChangeset({
+        releases: [getRelease({ name: "pkg-a", type: "patch" })],
+      }),
+    ],
+  };
+}
 
-class FakeFullState {
+export class FakeFullState {
   packages: Packages;
   changesets: NewChangeset[];
 
@@ -135,5 +139,3 @@ class FakeFullState {
     pkg.packageJson.version = version;
   }
 }
-
-export default FakeFullState;

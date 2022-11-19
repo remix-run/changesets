@@ -16,8 +16,8 @@ import fs from "fs-extra";
 import path from "path";
 import prettier from "prettier";
 
-import versionPackage from "./version-package";
-import getChangelogEntry from "./get-changelog-entry";
+import { versionPackage } from "./version-package";
+import { getChangelogEntry } from "./get-changelog-entry";
 
 function getPrettierInstance(cwd: string): typeof prettier {
   try {
@@ -67,7 +67,7 @@ async function getCommitsThatAddChangesets(
   return commits;
 }
 
-export default async function applyReleasePlan(
+export async function applyReleasePlan(
   releasePlan: ReleasePlan,
   packages: Packages,
   config: Config = defaultConfig,

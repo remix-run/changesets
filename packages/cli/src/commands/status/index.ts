@@ -4,7 +4,7 @@ import fs from "fs-extra";
 import path from "path";
 
 import * as git from "@changesets/git";
-import getReleasePlan from "@changesets/get-release-plan";
+import { getReleasePlan } from "../../modules/get-release-plan";
 import { error, log, info, warn } from "@changesets/logger";
 import type {
   VersionType,

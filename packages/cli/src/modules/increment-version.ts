@@ -1,6 +1,6 @@
 import * as semver from "semver";
-import type { InternalRelease, PreInfo } from "./types";
 import { InternalError } from "@changesets/errors";
+import { InternalRelease, PreInfo } from "./types";
 
 export function incrementVersion(
   release: InternalRelease,
